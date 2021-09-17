@@ -1,0 +1,18 @@
+{% extends "author/base.html" %}
+
+{% block content %}
+    <h1>Book Detail</h1>
+    <p>Name: {{object.book_title}}</p>
+    <p>Description: {{object.book_description}}</p>
+    <img width="300" src="/media/{{object.cover_image}}" alt="No cover"/>
+    <p>Author: {{object.author.name}}</p>
+    <p>Genre : </p>
+    {% for genre in object.genres.all %}
+        <span>{{genre.genre}}</span>
+    {% endfor %}
+
+    <a href="{% url "book_update"  object.id  %}">Edit Book</a>
+    <a href="{% url "book_delete" object.id %}">Delete Book</a>
+
+    <!-- <img  class="img-responsive watch-right" alt="not found" src={% if p.photo %}"{{p.photo.url}}"{% else %}"/something/else.png"{% endif %}/> -->
+{% endblock %}
